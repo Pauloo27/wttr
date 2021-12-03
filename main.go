@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -21,7 +22,11 @@ func main() {
 	}
 	bodyStr := string(body)
 
-	// TODO: handle arry with 0 size
+	bodyParts := strings.Split(bodyStr, ":")
+	if len(bodyParts) != 2 {
+		panic(errors.New("invalid body"))
+	}
+
 	wtr := strings.TrimSpace(strings.Split(bodyStr, ":")[1])
 	fmt.Println(wtr)
 }
