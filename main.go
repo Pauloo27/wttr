@@ -27,6 +27,6 @@ func main() {
 		panic(errors.New("invalid body"))
 	}
 
-	wtr := strings.TrimSpace(strings.Split(bodyStr, ":")[1])
+	wtr := strings.TrimSpace(bodyParts[1])
 	fmt.Println(wtr)
 }
