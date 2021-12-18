@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -11,20 +10,20 @@ import (
 func main() {
 	res, err := http.Get("https://wttr.in?view=3")
 	if err != nil {
-		panic(err)
+		panic("error =(")
 	}
 
 	defer res.Body.Close()
 	body, err := io.ReadAll(res.Body)
 
 	if err != nil {
-		panic(err)
+		panic("error =(")
 	}
 	bodyStr := string(body)
 
 	bodyParts := strings.Split(bodyStr, ":")
 	if len(bodyParts) != 2 {
-		panic(errors.New("invalid body"))
+		panic("error =(")
 	}
 
 	wtr := strings.TrimSpace(bodyParts[1])
